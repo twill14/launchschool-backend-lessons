@@ -1,0 +1,8 @@
+welcome: "Welcome to Calculator! Enter your name:"
+valid_name: "Make sure to enter a valid name."
+first_number: "Please enter first number."
+second_number: "Please enter second number"
+operation_retry: "Must choose one of the four operations only:
+         add, subtract, multiply, divide"
+try_again: "Do you want to perform another calculation? ('y' to calculate again)"
+thank_you: "Thank you for using the calculator"

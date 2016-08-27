@@ -1,0 +1,8 @@
+welcome: "Welcome to the loan Calculator!"
+loan_amount: "Please enter a loan amount."
+invalid_number: "Please enter a valid number."
+loan_apr: "Please enter the APR % [Example: 5 = 5%]"
+loan_apr_invalid: "Please enter an integer or float."
+loan_duration: "Please enter a loan duration. [Years]"
+try_again: "Would you like to calculate again? (press 'y' to continue)"
+thank_you: "Farewell"

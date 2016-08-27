@@ -1,32 +1,42 @@
+require 'yaml'
+
+MESSAGES = YAML.load_file('calculator_messages.yml')
+
 def prompt(message)
   puts "=> #{message}"
 end
 
 def valid_number?(num)
-  num.to_i.nonzero?
+  Integer(num) rescue false
+end
+
+def number?(num)
+  Float(num) rescue false
 end
 
 def operation_to_message(op)
-  case op
-  when 'add'
-    'Adding'
-  when 'subtract'
-    'Subtracting'
-  when 'multiply'
-    'Multiplying'
-  when 'divide'
-    'Dividing'
-  end
+ word = case op
+           when 'add'
+             'Adding'
+           when 'subtract'
+             'Subtracting'
+           when 'multiply'
+             'Multiplying'
+           when 'divide'
+             'Dividing'
+        end
+x = 'Random line of code'
+return word
 end
 
-prompt("Welcome to the Calculator. Enter your name")
+prompt(MESSAGES['welcome'])
 
 name = ''
 loop do
   name = gets.chomp
 
   if name.empty?
-    prompt "Make sure you use a valid name."
+    prompt(MESSAGES['valid_name'])
   else
     break
   end
@@ -37,25 +47,25 @@ prompt "Hello #{name}"
 loop do # Main Loop
   answer_1 = ''
   loop do
-    prompt "Please enter first number"
+    prompt(MESSAGES['first_number'])
     answer_1 = gets.chomp.to_i
 
-    if valid_number?answer_1
+    if valid_number?answer_1 and number? answer_1
       break
     else
-      prompt "Your number is not valid"
+      prompt(MESSAGES['valid_name'])
     end
   end
 
   answer_2 = ''
   loop do
-    prompt "Please enter second number"
+    prompt(MESSAGES['second_number'])
     answer_2 = gets.chomp.to_i
 
-    if valid_number?answer_2
+    if valid_number? answer_2 and number? answer_2
       break
     else
-      prompt "Your number is not valid"
+      prompt(MESSAGES['valid_name'])
     end
   end
 
@@ -76,8 +86,7 @@ loop do # Main Loop
     if %w(add subtract multiply divide).include?(operation)
       break
     else
-      prompt("Must choose one of the four operations only:
-         add, subtract, multiply, divide")
+      prompt(MESSAGES['operation_retry'])
     end
   end
 
@@ -96,9 +105,9 @@ loop do # Main Loop
 
   prompt("The result is #{result}")
 
-  prompt("Do you want to perform another calculation? ('y' to calculate again)")
+  prompt(MESSAGES['try_again'])
   answer = gets.chomp
   break unless answer.downcase.start_with?('y')
 end
 
-prompt("Thank you for using the calculator")
+prompt(MESSAGES['thank_you'])
