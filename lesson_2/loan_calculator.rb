@@ -2,7 +2,7 @@ require 'yaml'
 
 SYSTEM = YAML.load_file('loan_calculator_messages.yml')
 
-def validate_number?(num)
+def validate_number(num)
   Integer(num) rescue false
 end
 
@@ -10,7 +10,7 @@ def system_prompt(message)
   puts "-- #{message} --"
 end
 
-def validate_percent?(num)
+def validate_percent(num)
   Float(num) rescue false
 end
 
@@ -19,7 +19,7 @@ def monthly_interest_rate(apr)
   apr / 12
 end
 
-def calculation_method(la, mir, ldm)
+def calculate_loan_period(lnapr, mir, ldm)
   la * (mir / (1 - (1 + mir)**-ldm))
 end
 
